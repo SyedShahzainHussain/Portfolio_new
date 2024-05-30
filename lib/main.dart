@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/config/color/colors.dart';
 import 'config/routes/route_name.dart';
 import 'config/routes/routes.dart';
 import 'repository/auth_api/auth_repository.dart';
@@ -21,11 +23,10 @@ GetIt getIt = GetIt.instance;
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Portfolio',
       debugShowCheckedModeBanner: false,
       locale: const Locale('en'),
       localizationsDelegates: const [
@@ -38,11 +39,23 @@ class MyApp extends StatelessWidget {
         Locale('en'), // English
         Locale('es'), // Spanish
       ],
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      initialRoute: RoutesName.splash,
+      theme: ThemeData.dark().copyWith(
+          primaryColor: AppColors.primaryColor,
+          scaffoldBackgroundColor: AppColors.bgColor,
+          canvasColor: AppColors.bgColor,
+          elevatedButtonTheme: const ElevatedButtonThemeData(
+              style: ButtonStyle(
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.zero)))),
+          textTheme:
+              GoogleFonts.ubuntuCondensedTextTheme(Theme.of(context).textTheme)
+                  .apply(bodyColor: Colors.white)
+                  .copyWith(
+                    bodySmall: const TextStyle(color: AppColors.bodyTextColor),
+                    bodyMedium: const TextStyle(color: AppColors.bodyTextColor),
+                    bodyLarge: const TextStyle(color: AppColors.bodyTextColor),
+                  )),
+      initialRoute: RoutesName.main,
       onGenerateRoute: Routes.generateRoute,
     );
   }

@@ -13,5 +13,10 @@
     "popularShows": "Popular Shows",
     "noDataFound": "No Data Found",
     "noInternetConnection": "No Internet Connection",
-    "logout": "Logout"
+    "logout": "Logout",
+    "skills":"skills"
+
+
+    
+
 }

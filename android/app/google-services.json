@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "13873617006",
+    "project_id": "what-app-new",
+    "storage_bucket": "what-app-new.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13873617006:android:b9038ee709e75efc452e7f",
+        "android_client_info": {
+          "package_name": "com.example.bloc_templates"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjRUbPE_U3pLEHksjSJZ4XD2KmYFsFa5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13873617006:android:7cc7566496cc8a89452e7f",
+        "android_client_info": {
+          "package_name": "com.tauseef.whatsappclone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjRUbPE_U3pLEHksjSJZ4XD2KmYFsFa5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,5 +13,6 @@
     "popularShows": "Shows Populares",
     "noDataFound": "No se encontraron datos",
     "noInternetConnection": "Sin conexión a internet",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+     "skills":"skills"
 }

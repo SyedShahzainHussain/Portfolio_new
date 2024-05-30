@@ -1,6 +1,7 @@
-import 'package:bloc_templates/view/login/login_screen.dart';
+
 import 'package:flutter/material.dart';
 import '../../view/home/home_screen.dart';
+import '../../view/main/main_screen.dart';
 import '../../view/splash/splash_view.dart';
 import 'route_name.dart';
 
@@ -14,9 +15,13 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) => const HomeScreen());
 
-      case RoutesName.login:
+      // case RoutesName.login:
+      //   return MaterialPageRoute(
+      //       builder: (BuildContext context) => const LoginScreen());
+      case RoutesName.main:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const LoginScreen());
+            builder: (BuildContext context) => const MainScreen(
+                ));
       default:
         return MaterialPageRoute(builder: (_) {
           return const Scaffold(
