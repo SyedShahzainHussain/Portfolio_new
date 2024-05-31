@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/bloc/drawer_change_bloc/drawer_change_bloc.dart';
 import 'package:portfolio/config/color/colors.dart';
 import 'config/routes/route_name.dart';
 import 'config/routes/routes.dart';
@@ -14,7 +16,10 @@ void main() {
   WidgetsFlutterBinding
       .ensureInitialized(); // Ensuring that Flutter bindings are initialized
   servicesLocator(); // Initializing service locator for dependency injection
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => DrawerChangeBloc(),
+    child: const MyApp(),
+  ));
 }
 
 // GetIt is a package used for service locator or to manage dependency injection
@@ -41,20 +46,13 @@ class MyApp extends StatelessWidget {
       ],
       theme: ThemeData.dark().copyWith(
           primaryColor: AppColors.primaryColor,
-          scaffoldBackgroundColor: AppColors.bgColor,
+          scaffoldBackgroundColor: AppColors.whiteColor,
           canvasColor: AppColors.bgColor,
           elevatedButtonTheme: const ElevatedButtonThemeData(
               style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.zero)))),
-          textTheme:
-              GoogleFonts.ubuntuCondensedTextTheme(Theme.of(context).textTheme)
-                  .apply(bodyColor: Colors.white)
-                  .copyWith(
-                    bodySmall: const TextStyle(color: AppColors.bodyTextColor),
-                    bodyMedium: const TextStyle(color: AppColors.bodyTextColor),
-                    bodyLarge: const TextStyle(color: AppColors.bodyTextColor),
-                  )),
+          textTheme: GoogleFonts.ubuntuCondensedTextTheme()),
       initialRoute: RoutesName.main,
       onGenerateRoute: Routes.generateRoute,
     );

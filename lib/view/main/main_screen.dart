@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/bloc/drawer_change_bloc/drawer_change_bloc.dart';
 import 'package:portfolio/utils/constant.dart';
 import 'package:portfolio/utils/extension/general_extension.dart';
+import 'package:portfolio/view/profile/profile.dart';
 import 'package:portfolio/view/responsive.dart';
 
-import '../home/widget/home_banner_widget.dart';
-import 'widget/slide_menu.dart';
+import '../contact/contact_screen.dart';
+import '../drawer/drawer_screen.dart';
+import '../home/home_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({
@@ -33,11 +37,14 @@ class MainScreen extends StatelessWidget {
       body: Container(
         constraints: const BoxConstraints(maxWidth: maxWidth),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (Responsive.isDesktop(context)) const SlideMenu(),
             defaultPadding.width,
-            Expanded(flex: 7, child: children[0]),
+            BlocBuilder<DrawerChangeBloc, DrawerChangeState>(
+              builder: (context, state) {
+                return Expanded(flex: 7, child: pages[state.currentIndex]);
+              },
+            ),
             defaultPadding.width,
           ],
         ),
@@ -46,6 +53,14 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-List<Widget> children = [
-  const HomeBanner(),
+List<Widget> pages = [
+  const HomeScreen(),
+  const ProfileScreen(),
+  const ContactScreen(),
+  const Center(
+    child: Text("Work"),
+  ),
+  const Center(
+    child: Text("Login"),
+  ),
 ];

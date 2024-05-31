@@ -59,7 +59,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   carousel_slider: ^4.2.1
   sidebarx: ^0.17.1
-
+  iconsax: ^0.0.8
   ## web
   universal_html: ^2.2.4
   flutter_localizations:
