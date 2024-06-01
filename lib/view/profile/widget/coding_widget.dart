@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/config/color/colors.dart';
 import 'package:portfolio/config/components/animated_circular_progress_indicator_widget.dart';
+import 'package:portfolio/utils/extension/general_extension.dart';
 
 import '../../../utils/constant.dart';
 
@@ -11,20 +13,27 @@ class Coding extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Divider(),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           child: Text(
             "Coding",
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: Colors.white),
+            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  color: AppColors.lightGrey,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
-        const AnimatedLinearProgressIndicator(
-            percentage: 0.8, label: "Flutter"),
-        const AnimatedLinearProgressIndicator(percentage: 0.7, label: "Dart"),
+        Row(children: [
+
+        const Expanded(
+          child: AnimatedLinearProgressIndicator(
+              percentage: 0.8, label: "Flutter"),
+        ),
+        10.width,
+        const Expanded(
+            child: AnimatedLinearProgressIndicator(
+                percentage: 0.7, label: "Dart")),
+        ],)
       ],
     );
   }

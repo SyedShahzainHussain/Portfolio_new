@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/extension/general_extension.dart';
-
 import '../../../config/color/colors.dart';
 import '../../responsive.dart';
+import 'profile_cv_button_widget.dart';
 
 class ProfileAreaWidget extends StatelessWidget {
   const ProfileAreaWidget({
@@ -33,10 +32,10 @@ class ProfileAreaWidget extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(8),
           child: CircleAvatar(
-            radius: (Responsive.isDesktop(context) ||
-                    Responsive.isTablet(context))
-                ? 100
-                : 70,
+            radius:
+                (Responsive.isDesktop(context) || Responsive.isTablet(context))
+                    ? 100
+                    : 70,
             backgroundColor: AppColors.darkColor,
             backgroundImage: const NetworkImage(
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3WEmfJCME77ZGymWrlJkXRv5bWg9QQmQEzw&s"),
@@ -78,36 +77,7 @@ class ProfileAreaWidget extends StatelessWidget {
           ),
         ),
         20.height,
-        OutlinedButton(
-          onPressed: () {},
-          style: ButtonStyle(
-              side: MaterialStateProperty.all(
-                  const BorderSide(color: AppColors.primaryColor)),
-              backgroundColor:
-                  MaterialStateProperty.resolveWith((states) {
-                if (states.contains(MaterialState.hovered)) {
-                  return AppColors.primaryColor;
-                } else if (states.contains(MaterialState.pressed)) {
-                  return AppColors.primaryColor;
-                }
-                return null;
-              }),
-              foregroundColor:
-                  MaterialStateProperty.resolveWith((states) {
-                if (states.contains(MaterialState.hovered)) {
-                  return Colors.white;
-                } else if (states.contains(MaterialState.pressed)) {
-                  return Colors.white;
-                }
-                return AppColors.primaryColor;
-              }),
-              textStyle: MaterialStateProperty.all(
-                Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-              )),
-          child: const Text("Download Resume"),
-        )
+        const CvButtonWidget()
       ],
     );
   }

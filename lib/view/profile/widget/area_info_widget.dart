@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/config/color/colors.dart';
+import 'package:portfolio/utils/extension/general_extension.dart';
 
 import '../../../utils/constant.dart';
 
@@ -16,13 +18,20 @@ class AreaInfoText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: defaultPadding / 2),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title!,
-            style: const TextStyle(color: Colors.white),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: AppColors.darkColor,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
-          Text(text!),
+          10.width,
+          Text(text!,
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: AppColors.darkColor,
+                    fontWeight: FontWeight.w500,
+                  )),
         ],
       ),
     );

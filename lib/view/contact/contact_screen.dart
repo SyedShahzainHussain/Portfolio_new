@@ -21,28 +21,27 @@ class ContactScreen extends StatelessWidget {
                 minHeight: MediaQuery.of(context).size.height,
               ),
               child: Center(
-                child: IntrinsicHeight(
-                  child: SizedBox(
-                    width: (Responsive.isDesktop(context) ||
-                            Responsive.isTablet(context))
-                        ? context.mediaQueryWidth / 2
-                        : null,
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const ContactTitle(),
-                            10.height,
-                            const ContactSubTitleWidget(),
-                            10.height,
-                            const ContactForm(),
-                            20.height,
-                            const ContactButton()
-                          ],
-                        ),
+                child: SizedBox(
+                  width: (Responsive.isDesktop(context) ||
+                          Responsive.isTablet(context))
+                      ? context.mediaQueryWidth / 2
+                      : null,
+                  child: Material(
+                    elevation: 7,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const ContactTitle(),
+                          10.height,
+                          const ContactSubTitleWidget(),
+                          10.height,
+                          const ContactForm(),
+                          20.height,
+                          const ContactButton()
+                        ],
                       ),
                     ),
                   ),

@@ -214,21 +214,3 @@ class HomeBanner extends StatelessWidget {
     );
   }
 }
-//  EdgeInsets.symmetric(
-//                                       horizontal: Responsive.isDesktop(context)
-//                                           ? defaultPadding * 2
-//                                           : Responsive.isTablet(context)
-//                                               ? defaultPadding
-//                                               : Responsive.isMobileLarge(
-//                                                       context)
-//                                                   ? defaultPadding - 10
-//                                                   : 5,
-//                                       vertical: Responsive.isDesktop(context)
-//                                           ? defaultPadding
-//                                           : Responsive.isTablet(context)
-//                                               ? defaultPadding - 10
-//                                               : Responsive.isMobileLarge(
-//                                                       context)
-//                                                   ? defaultPadding - 5
-//                                                   : 3,
-//                                     )

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/bloc/drawer_change_bloc/drawer_change_bloc.dart';
 import 'package:portfolio/config/color/colors.dart';
+import 'package:portfolio/view/profile/widget/platform_widget.dart';
 import 'package:sidebarx/sidebarx.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SlideMenu extends StatelessWidget {
   const SlideMenu({super.key});
@@ -14,11 +15,19 @@ class SlideMenu extends StatelessWidget {
       builder: (context, state) {
         return SidebarX(
           footerDivider: const Divider(),
+          footerBuilder: (context, extended) {
+            return const Platforms();
+          },
           controller: SidebarXController(
               selectedIndex: state.currentIndex, extended: true),
           items: [
             SidebarXItem(
-              icon: Iconsax.home,
+              iconBuilder: (selected, hover) {
+                return FaIcon(
+                  FontAwesomeIcons.house,
+                  color: hover ? AppColors.primaryColor : Colors.white,
+                );
+              },
               label: 'Home',
               onTap: () {
                 context.read<DrawerChangeBloc>().add(ChangePageIndex(index: 0));
@@ -26,7 +35,12 @@ class SlideMenu extends StatelessWidget {
               },
             ),
             SidebarXItem(
-              icon: Iconsax.profile_2user,
+              iconBuilder: (selected, hover) {
+                return FaIcon(
+                  FontAwesomeIcons.userGraduate,
+                  color: hover ? AppColors.primaryColor : Colors.white,
+                );
+              },
               label: 'Profile',
               onTap: () {
                 context.read<DrawerChangeBloc>().add(ChangePageIndex(index: 1));
@@ -34,7 +48,12 @@ class SlideMenu extends StatelessWidget {
               },
             ),
             SidebarXItem(
-              icon: Iconsax.info_circle,
+              iconBuilder: (selected, hover) {
+                return FaIcon(
+                  FontAwesomeIcons.solidAddressBook,
+                  color: hover ? AppColors.primaryColor : Colors.white,
+                );
+              },
               label: 'Contact',
               onTap: () {
                 context.read<DrawerChangeBloc>().add(ChangePageIndex(index: 2));
@@ -42,7 +61,12 @@ class SlideMenu extends StatelessWidget {
               },
             ),
             SidebarXItem(
-              icon: Iconsax.presention_chart,
+              iconBuilder: (selected, hover) {
+                return FaIcon(
+                  FontAwesomeIcons.suitcase,
+                  color: hover ? AppColors.primaryColor : Colors.white,
+                );
+              },
               label: 'Projects',
               onTap: () {
                 context.read<DrawerChangeBloc>().add(ChangePageIndex(index: 3));
@@ -50,7 +74,12 @@ class SlideMenu extends StatelessWidget {
               },
             ),
             SidebarXItem(
-              icon: Iconsax.login,
+              iconBuilder: (selected, hover) {
+                return FaIcon(
+                  FontAwesomeIcons.arrowRightFromBracket,
+                  color: hover ? AppColors.primaryColor : Colors.white,
+                );
+              },
               label: 'Login',
               onTap: () {
                 context.read<DrawerChangeBloc>().add(ChangePageIndex(index: 4));

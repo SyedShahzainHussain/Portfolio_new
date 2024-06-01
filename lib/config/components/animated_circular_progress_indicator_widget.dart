@@ -16,7 +16,7 @@ class AnimatedCircularProgressIndicator extends StatelessWidget {
     return Column(
       children: [
         AspectRatio(
-          aspectRatio: 1,
+          aspectRatio: 0.9,
           child: TweenAnimationBuilder(
             tween: Tween<double>(begin: 0, end: percentage),
             duration: defaultDuration,
@@ -77,7 +77,7 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
                   children: [
                     Text(
                       label,
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: AppColors.darkColor),
                     ),
                     Text("${(value * 100).toInt()}%"),
                   ],
@@ -85,9 +85,10 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
                 const SizedBox(height: defaultPadding / 2),
                 LinearProgressIndicator(
                   borderRadius: BorderRadius.circular(8.0),
+                  minHeight: 8,
                   value: value,
                   color: AppColors.primaryColor,
-                  backgroundColor: AppColors.darkColor,
+                  backgroundColor: AppColors.lightGrey,
                 ),
               ],
             );

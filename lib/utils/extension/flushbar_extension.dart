@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/config/color/colors.dart';
 
 extension FlushBarErrorMessage on BuildContext {
   void flushBarErrorMessage({required String message}) {
@@ -13,6 +14,7 @@ extension FlushBarErrorMessage on BuildContext {
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             padding: const EdgeInsets.all(15),
             message: message,
+            messageColor: AppColors.whiteColor,
             duration: const Duration(seconds: 3),
             borderRadius: BorderRadius.circular(8),
             flushbarPosition: FlushbarPosition.TOP,
@@ -29,9 +31,10 @@ extension FlushBarErrorMessage on BuildContext {
       ScaffoldMessenger.of(this)
         ..hideCurrentSnackBar()
         ..showSnackBar(SnackBar(
-          content: Text(message),
+          content: Text(message,style: const TextStyle(color: AppColors.whiteColor),),
           margin: const EdgeInsets.all(10.0),
           backgroundColor: Colors.red,
+          
           behavior: SnackBarBehavior.floating,
         ));
     }
@@ -48,6 +51,7 @@ extension FlushBarSuccessMessage on BuildContext {
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             padding: const EdgeInsets.all(15),
             message: message,
+            messageColor: AppColors.whiteColor,
             duration: const Duration(seconds: 3),
             borderRadius: BorderRadius.circular(8),
             flushbarPosition: FlushbarPosition.TOP,
@@ -64,7 +68,7 @@ extension FlushBarSuccessMessage on BuildContext {
       ScaffoldMessenger.of(this)
         ..hideCurrentSnackBar()
         ..showSnackBar(SnackBar(
-          content: Text(message),
+           content: Text(message,style: const TextStyle(color: AppColors.whiteColor),),
           margin: const EdgeInsets.all(10.0),
           backgroundColor: Colors.green,
           behavior: SnackBarBehavior.floating,

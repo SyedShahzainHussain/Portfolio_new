@@ -9,6 +9,7 @@ import 'package:portfolio/view/responsive.dart';
 import '../contact/contact_screen.dart';
 import '../drawer/drawer_screen.dart';
 import '../home/home_screen.dart';
+import '../work/work_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({
@@ -57,9 +58,7 @@ List<Widget> pages = [
   const HomeScreen(),
   const ProfileScreen(),
   const ContactScreen(),
-  const Center(
-    child: Text("Work"),
-  ),
+  const WorkScreen(),
   const Center(
     child: Text("Login"),
   ),

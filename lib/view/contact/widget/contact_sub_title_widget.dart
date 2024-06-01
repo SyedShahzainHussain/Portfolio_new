@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/config/color/colors.dart';
 
 class ContactSubTitleWidget extends StatelessWidget {
   const ContactSubTitleWidget({super.key});
@@ -7,8 +8,10 @@ class ContactSubTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "Fancy working together or just want to say hi? Drop me a message below.",
-      style:
-          Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white),
+      style: Theme.of(context)
+          .textTheme
+          .bodyLarge!
+          .copyWith(color: AppColors.grey, fontWeight: FontWeight.w700),
     );
   }
 }

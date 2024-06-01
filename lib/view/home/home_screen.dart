@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/utils/extension/general_extension.dart';
 
+import '../work/work_screen.dart';
 import 'widget/home_banner/home_banner_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,10 +9,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
-          HomeBanner(),
+          const HomeBanner(),
         ],
       ),
     );

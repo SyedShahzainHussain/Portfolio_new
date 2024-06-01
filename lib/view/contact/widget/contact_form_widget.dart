@@ -19,10 +19,10 @@ class ContactForm extends StatelessWidget {
                 children: [
                   Text(
                     "Your Name",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: AppColors.primaryColor),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   10.height,
                   InputFieldWidget(
@@ -42,10 +42,10 @@ class ContactForm extends StatelessWidget {
                 children: [
                   Text(
                     "Your Email",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: AppColors.primaryColor),
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          color: AppColors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   10.height,
                   InputFieldWidget(
@@ -66,10 +66,10 @@ class ContactForm extends StatelessWidget {
           children: [
             Text(
               "Subject",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: AppColors.primaryColor),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: AppColors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             10.height,
             InputFieldWidget(
@@ -87,10 +87,10 @@ class ContactForm extends StatelessWidget {
           children: [
             Text(
               "Message",
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: AppColors.primaryColor),
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: AppColors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             10.height,
             InputFieldWidget(
