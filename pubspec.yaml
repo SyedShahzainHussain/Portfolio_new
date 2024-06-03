@@ -62,6 +62,8 @@ dependencies:
   sidebarx: ^0.17.1
   font_awesome_flutter: ^10.7.0
   flutter_layout_grid: ^2.0.7
+  rive: ^0.13.5
+  connectivity_plus: ^6.0.1
   ## web
   universal_html: ^2.2.4
   flutter_localizations:

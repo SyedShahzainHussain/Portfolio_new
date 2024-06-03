@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/extension/general_extension.dart';
+import 'package:portfolio/utils/helper_function.dart';
 import '../../../config/color/colors.dart';
 import '../../responsive.dart';
 import 'profile_cv_button_widget.dart';
@@ -45,14 +46,14 @@ class ProfileAreaWidget extends StatelessWidget {
         // ! Name Text
         Text("Hellow I am, Syed Shahzain",
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  color: AppColors.darkColor,
+                  color: HelperFunction.isDarkMode(context)?AppColors.whiteColor: AppColors.darkColor,
                   fontWeight: FontWeight.bold,
                 )),
         10.height,
         Text(
           "Flutter Developer",
           style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                color: AppColors.darkColor,
+                color:  HelperFunction.isDarkMode(context)?AppColors.whiteColor: AppColors.darkColor,
                 fontWeight: FontWeight.bold,
               ),
           textAlign: TextAlign.center,
@@ -67,7 +68,7 @@ class ProfileAreaWidget extends StatelessWidget {
           child: Text(
             "Mauris cursus libero eu gravida malesuada. Vivamus efficitur sollicitudin tincidunt. Vivamus iaculis, est et posuere facilisis, sem nisi volutpat enim, eget hendrerit libero ligula quis lacus",
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: AppColors.darkColor,
+                  color:  HelperFunction.isDarkMode(context)?AppColors.whiteColor: AppColors.darkColor,
                   overflow: TextOverflow.ellipsis,
                 ),
             textAlign: TextAlign.center,

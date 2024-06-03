@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/bloc/drawer_change_bloc/drawer_change_bloc.dart';
 import 'package:portfolio/utils/constant.dart';
 import 'package:portfolio/utils/extension/general_extension.dart';
+import 'package:portfolio/view/login/login_screen.dart';
 import 'package:portfolio/view/profile/profile.dart';
 import 'package:portfolio/view/responsive.dart';
 
@@ -59,7 +60,5 @@ List<Widget> pages = [
   const ProfileScreen(),
   const ContactScreen(),
   const WorkScreen(),
-  const Center(
-    child: Text("Login"),
-  ),
+  const LoginScreen(),
 ];

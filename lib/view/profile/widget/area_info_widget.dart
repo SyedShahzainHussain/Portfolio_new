@@ -3,6 +3,7 @@ import 'package:portfolio/config/color/colors.dart';
 import 'package:portfolio/utils/extension/general_extension.dart';
 
 import '../../../utils/constant.dart';
+import '../../../utils/helper_function.dart';
 
 class AreaInfoText extends StatelessWidget {
   const AreaInfoText({
@@ -22,14 +23,14 @@ class AreaInfoText extends StatelessWidget {
           Text(
             title!,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  color: AppColors.darkColor,
+                  color:  HelperFunction.isDarkMode(context)?AppColors.whiteColor: AppColors.darkColor,
                   fontWeight: FontWeight.bold,
                 ),
           ),
           10.width,
           Text(text!,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: AppColors.darkColor,
+                    color:  HelperFunction.isDarkMode(context)?AppColors.whiteColor: AppColors.darkColor,
                     fontWeight: FontWeight.w500,
                   )),
         ],

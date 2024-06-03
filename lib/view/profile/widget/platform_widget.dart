@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/config/builder_context/builder_context.dart';
 import 'package:portfolio/config/color/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -37,7 +38,11 @@ class Platforms extends StatelessWidget {
         if (await launchUrl(
           Uri.parse(url),
           mode: LaunchMode.externalApplication,
-        )) {}
+        )) {
+          if (BuilderContext.context.mounted) {
+            Navigator.of(BuilderContext.context).pop();
+          }
+        }
       },
       icon: SvgPicture.asset(
         assetPath,

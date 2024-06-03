@@ -4,6 +4,7 @@ import 'package:portfolio/config/components/animated_circular_progress_indicator
 import 'package:portfolio/utils/extension/general_extension.dart';
 
 import '../../../utils/constant.dart';
+import '../../../utils/helper_function.dart';
 
 class Coding extends StatelessWidget {
   const Coding({super.key});
@@ -18,7 +19,7 @@ class Coding extends StatelessWidget {
           child: Text(
             "Coding",
             style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  color: AppColors.lightGrey,
+                  color:  HelperFunction.isDarkMode(context)?AppColors.primaryColor: AppColors.lightGrey,
                   fontWeight: FontWeight.bold,
                 ),
           ),

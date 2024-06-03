@@ -13,35 +13,38 @@ class ContactScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: MediaQuery.of(context).size.height,
-              ),
-              child: Center(
-                child: SizedBox(
-                  width: (Responsive.isDesktop(context) ||
-                          Responsive.isTablet(context))
-                      ? context.mediaQueryWidth / 2
-                      : null,
-                  child: Material(
-                    elevation: 7,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const ContactTitle(),
-                          10.height,
-                          const ContactSubTitleWidget(),
-                          10.height,
-                          const ContactForm(),
-                          20.height,
-                          const ContactButton()
-                        ],
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height,
+                ),
+                child: Center(
+                  child: SizedBox(
+                    width: (Responsive.isDesktop(context) ||
+                            Responsive.isTablet(context))
+                        ? context.mediaQueryWidth / 2
+                        : null,
+                    child: Material(
+                      elevation: 9.0,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const ContactTitle(),
+                            10.height,
+                            const ContactSubTitleWidget(),
+                            10.height,
+                            const ContactForm(),
+                            20.height,
+                            const ContactButton()
+                          ],
+                        ),
                       ),
                     ),
                   ),

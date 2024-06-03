@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../config/color/colors.dart';
 import '../../../../config/components/clip_behavior.dart';
 import '../../../../utils/constant.dart';
 import '../../../responsive.dart';
@@ -16,13 +15,10 @@ class HomeBanner extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       child: AspectRatio(
-        aspectRatio: Responsive.isMobile(context)
-            ? 2.5
-            : Responsive.isExtraSmallMobile(context)
-                ? 2
-                : Responsive.isTablet(context)
-                    ? 3.5
-                    : 3,
+        aspectRatio:
+            (Responsive.isDesktop(context) || Responsive.isTablet(context))
+                ? 3
+                : 2,
         child: Material(
           elevation: 5.0,
           color: Colors.white,
@@ -115,70 +111,14 @@ class HomeBanner extends StatelessWidget {
                                 alignment: Responsive.isMobile(context)
                                     ? Alignment.center
                                     : Alignment.centerLeft,
-                                child: ElevatedButton(
-                                  onPressed: () {},
+                                child: OutlinedButton(
                                   style: ButtonStyle(
-                                      side: MaterialStateProperty.all(
-                                          const BorderSide(
-                                              color: AppColors.primaryColor)),
-                                      padding: MaterialStateProperty.all(
-                                          EdgeInsets.symmetric(
-                                        horizontal:
-                                            Responsive.isDesktop(context)
-                                                ? defaultPadding * 2
-                                                : Responsive.isTablet(context)
-                                                    ? defaultPadding
-                                                    : Responsive.isMobileLarge(
-                                                            context)
-                                                        ? defaultPadding - 10
-                                                        : 5,
-                                        vertical: Responsive.isDesktop(context)
-                                            ? defaultPadding
-                                            : Responsive.isTablet(context)
-                                                ? defaultPadding - 10
-                                                : Responsive.isMobileLarge(
-                                                        context)
-                                                    ? defaultPadding - 5
-                                                    : 3,
-                                      )),
-                                      backgroundColor:
-                                          MaterialStateProperty.resolveWith(
-                                              (states) {
-                                        if (states
-                                            .contains(MaterialState.hovered)) {
-                                          return AppColors.primaryColor;
-                                        } else if (states
-                                            .contains(MaterialState.pressed)) {
-                                          return AppColors.primaryColor;
-                                        }
-                                        return Colors.white;
-                                      }),
-                                      foregroundColor:
-                                          MaterialStateProperty.resolveWith(
-                                              (states) {
-                                        if (states
-                                            .contains(MaterialState.hovered)) {
-                                          return Colors.white;
-                                        } else if (states
-                                            .contains(MaterialState.pressed)) {
-                                          return Colors.white;
-                                        }
-                                        return AppColors.primaryColor;
-                                      }),
-                                      textStyle: MaterialStateProperty.all(
-                                        Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      )),
-                                  child: const Text(
-                                    "EXPLORE NOW",
-                                   
-                                  ),
+                                      shape: MaterialStateProperty.all(
+                                          const BeveledRectangleBorder())),
+                                  onPressed: () {},
+                                  child: const Text("EXPLORE NOW"),
                                 ),
-                              ),
+                              )
                           ],
                         ),
                       )

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/config/color/colors.dart';
 import 'package:portfolio/utils/extension/general_extension.dart';
 
+import '../../utils/helper_function.dart';
 import 'widget/profile_about_widget.dart';
 import 'widget/profile_area_widget.dart';
 
@@ -29,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
               Text(
                 "About Me",
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      color: AppColors.lightGrey,
+                      color:  HelperFunction.isDarkMode(context)?AppColors.primaryColor: AppColors.lightGrey,
                       fontWeight: FontWeight.bold,
                     ),
               ),

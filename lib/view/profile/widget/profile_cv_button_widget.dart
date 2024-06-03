@@ -39,11 +39,9 @@ class _CvButtonWidgetState extends State<CvButtonWidget> {
           return BlocListener<DownlaodFileBloc, DownloadFileState>(
             listener: (context, state) {
               if (state.postApiStatus == PostApiStatus.success) {
-                context.flushBarSuccessMessage(
-                    message: "Cv Downloaded Successfully");
+                context.flushBarSuccessMessage(message: state.message);
               } else if (state.postApiStatus == PostApiStatus.error) {
-                context.flushBarErrorMessage(
-                    message: "Error Occured While Downloading");
+                context.flushBarErrorMessage(message: state.message);
               }
             },
             child: OutlinedButton(
@@ -53,30 +51,6 @@ class _CvButtonWidgetState extends State<CvButtonWidget> {
                     url:
                         "https://firebasestorage.googleapis.com/v0/b/fir-b1e27.appspot.com/o/FullStmt_1713612188885_4230166016747_HassanHussain1.pdf?alt=media&token=7d1c1aef-230c-402b-a59a-7121c36272ca"));
               },
-              style: ButtonStyle(
-                  side: MaterialStateProperty.all(
-                      const BorderSide(color: AppColors.primaryColor)),
-                  backgroundColor: MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.hovered)) {
-                      return AppColors.primaryColor;
-                    } else if (states.contains(MaterialState.pressed)) {
-                      return AppColors.primaryColor;
-                    }
-                    return null;
-                  }),
-                  foregroundColor: MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.hovered)) {
-                      return Colors.white;
-                    } else if (states.contains(MaterialState.pressed)) {
-                      return Colors.white;
-                    }
-                    return AppColors.primaryColor;
-                  }),
-                  textStyle: MaterialStateProperty.all(
-                    Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  )),
               child: state.isLoading
                   ? const SizedBox(
                       width: 15,

@@ -9,6 +9,8 @@ import 'package:portfolio/utils/enums.dart';
 import "package:universal_html/html.dart" as html;
 import 'package:path_provider/path_provider.dart';
 
+import '../../utils/connectivity_helper.dart';
+
 part 'download_file_state.dart';
 part 'download_file_event.dart';
 
@@ -22,15 +24,27 @@ class DownlaodFileBloc extends Bloc<DownloadFileEvent, DownloadFileState> {
       emit(state.copyWith(
           isLoading: true, postApiStatus: PostApiStatus.initial));
       try {
-        html.AnchorElement(href: event.url)
-          ..setAttribute("download", event.fileName)
-          ..setAttribute("target", "_blank")
-          ..click();
-        emit(state.copyWith(
-            isLoading: false, postApiStatus: PostApiStatus.success));
+        final isConnected = await ConnectivityHelper().isConnected();
+        if (isConnected) {
+          html.AnchorElement(href: event.url)
+            ..setAttribute("download", event.fileName)
+            ..setAttribute("target", "_blank")
+            ..click();
+          emit(state.copyWith(
+              isLoading: false,
+              postApiStatus: PostApiStatus.success,
+              message: "Cv Download Successfully"));
+        } else {
+          emit(state.copyWith(
+              isLoading: false,
+              postApiStatus: PostApiStatus.error,
+              message: "No Internet Connection"));
+        }
       } catch (e) {
         emit(state.copyWith(
-            isLoading: false, postApiStatus: PostApiStatus.error));
+            isLoading: false,
+            postApiStatus: PostApiStatus.error,
+            message: "Error Occured While Downloading"));
       }
     } else {
       Directory? directory;
@@ -38,35 +52,47 @@ class DownlaodFileBloc extends Bloc<DownloadFileEvent, DownloadFileState> {
         try {
           emit(state.copyWith(
               isLoading: true, postApiStatus: PostApiStatus.initial));
-          directory = await getExternalStorageDirectory();
-          String newPath = "";
-          final List<String> path = directory!.path.split("/");
-          for (var i = 1; i < path.length; i++) {
-            final folder = path[i];
-            if (folder != "Android") {
-              newPath += "/$folder";
-            } else {
-              break;
+          final isConnected = await ConnectivityHelper().isConnected();
+          if (!isConnected) {
+            emit(state.copyWith(
+                isLoading: false,
+                postApiStatus: PostApiStatus.error,
+                message: "No Internet Connection"));
+          } else {
+            directory = await getExternalStorageDirectory();
+            String newPath = "";
+            final List<String> path = directory!.path.split("/");
+            for (var i = 1; i < path.length; i++) {
+              final folder = path[i];
+              if (folder != "Android") {
+                newPath += "/$folder";
+              } else {
+                break;
+              }
             }
+
+            newPath = "$newPath/Download";
+            directory = Directory(newPath);
+            if (!await directory.exists()) {
+              await directory.create(recursive: true);
+            }
+
+            File saveFile = File("${directory.path}/${event.fileName}");
+
+            await Dio().download(
+              event.url,
+              saveFile.path,
+            );
+            emit(state.copyWith(
+                isLoading: false,
+                postApiStatus: PostApiStatus.success,
+                message: "Cv Download Successfully"));
           }
-
-          newPath = "$newPath/Download";
-          directory = Directory(newPath);
-          if (!await directory.exists()) {
-            await directory.create(recursive: true);
-          }
-
-          File saveFile = File("${directory.path}/${event.fileName}");
-
-          await Dio().download(
-            event.url,
-            saveFile.path,
-          );
-          emit(state.copyWith(
-              isLoading: false, postApiStatus: PostApiStatus.success));
         } catch (e) {
           emit(state.copyWith(
-              isLoading: false, postApiStatus: PostApiStatus.error));
+              isLoading: false,
+              postApiStatus: PostApiStatus.error,
+              message: "Error Occured While Downloading"));
         }
       }
     }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/config/color/colors.dart';
 import 'package:portfolio/utils/constant.dart';
 
+import '../../utils/helper_function.dart';
+
 class AnimatedCircularProgressIndicator extends StatelessWidget {
   const AnimatedCircularProgressIndicator({
     super.key,
@@ -77,7 +79,7 @@ class AnimatedLinearProgressIndicator extends StatelessWidget {
                   children: [
                     Text(
                       label,
-                      style: const TextStyle(color: AppColors.darkColor),
+                      style:  TextStyle(color:  HelperFunction.isDarkMode(context)?AppColors.whiteColor: AppColors.darkColor,),
                     ),
                     Text("${(value * 100).toInt()}%"),
                   ],
