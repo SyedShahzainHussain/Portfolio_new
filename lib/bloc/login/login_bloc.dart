@@ -1,3 +1,4 @@
+
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
 
@@ -33,16 +34,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     emit(state.copyWith(postApiStatus: PostApiStatus.loading, message: ""));
     await loginRepository.loginApi(body).then((value) async {
-      if (value.error.isNotEmpty) {
-        emit(state.copyWith(
-            postApiStatus: PostApiStatus.error,
-            message: value.error.toString()));
-      } else {
-        await SessionController().saveUserPrefrence(value);
-        await SessionController().getUserPrefrences();
-        emit(state.copyWith(
-            postApiStatus: PostApiStatus.success, message: value.token));
-      }
+      await SessionController().saveUserPrefrence(value);
+      await SessionController().getUserPrefrences();
+      emit(state.copyWith(
+          postApiStatus: PostApiStatus.success, message: value.token));
     }).onError((error, stackTrace) {
       emit(state.copyWith(
           postApiStatus: PostApiStatus.error, message: error.toString()));

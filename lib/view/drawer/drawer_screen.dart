@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/bloc/drawer_change_bloc/drawer_change_bloc.dart';
+import 'package:portfolio/bloc/logout/logout_bloc.dart';
 import 'package:portfolio/config/color/colors.dart';
+import 'package:portfolio/services/session_controller/session_controller.dart';
 import 'package:portfolio/view/profile/widget/platform_widget.dart';
+import 'package:portfolio/view/view.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -86,6 +89,24 @@ class SlideMenu extends StatelessWidget {
                 Scaffold.of(context).closeDrawer();
               },
             ),
+            if (SessionController().isLogin!)
+              SidebarXItem(
+                iconBuilder: (selected, hover) {
+                  return FaIcon(
+                    FontAwesomeIcons.rightFromBracket,
+                    color: hover ? AppColors.primaryColor : Colors.white,
+                  );
+                },
+                label: 'Logout',
+                onTap: () {
+                  context.read<LogoutBloc>().add(Logout());
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SplashView()),
+                      (route) => false);
+                  Scaffold.of(context).closeDrawer();
+                },
+              ),
           ],
           theme: SidebarXTheme(
             margin: const EdgeInsets.all(10),
@@ -125,7 +146,6 @@ class SlideMenu extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.secondaryColor,
             ),
-            margin: EdgeInsets.only(right: 10),
           ),
         );
       },

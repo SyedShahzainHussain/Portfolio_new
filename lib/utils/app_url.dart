@@ -1,6 +1,6 @@
 class AppUrl {
-  static var baseUrl = 'https://reqres.in';
-  static var loginEndPint = '$baseUrl/api/login';
-  static var popularMoviesListEndPoint =
-      'https://www.episodate.com/api/most-popular?page=1';
+  static const loginApi =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
+
+  static const contactApi = "https://api.emailjs.com/api/v1.0/email/send";
 }

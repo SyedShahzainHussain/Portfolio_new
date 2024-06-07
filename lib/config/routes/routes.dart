@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:portfolio/admin/view/main/admin_main_screen.dart';
 import '../../view/home/home_screen.dart';
 import '../../view/main/main_screen.dart';
 import '../../view/splash/splash_view.dart';
@@ -15,13 +15,14 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) => const HomeScreen());
 
-      // case RoutesName.login:
-      //   return MaterialPageRoute(
-      //       builder: (BuildContext context) => const LoginScreen());
       case RoutesName.main:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const MainScreen(
-                ));
+            builder: (BuildContext context) => const MainScreen());
+
+      case RoutesName.adminMainScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const AdminMainScreen());
+
       default:
         return MaterialPageRoute(builder: (_) {
           return const Scaffold(

@@ -64,6 +64,7 @@ dependencies:
   flutter_layout_grid: ^2.0.7
   rive: ^0.13.5
   connectivity_plus: ^6.0.1
+  loading_animation_widget: ^1.2.1
   ## web
   universal_html: ^2.2.4
   flutter_localizations:

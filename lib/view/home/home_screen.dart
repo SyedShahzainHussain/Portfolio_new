@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(2.0 ),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                 // set all the row sizes to auto (self-sizing height)
                 rowGap: 40, // equivalent to mainAxisSpacing
                 columnGap: 24,
-          
+
                 rowSizes: List.generate(10, (_) => auto),
                 children: [
                   for (var i = 0; i < 5; i++) const WorkCardWidget(),

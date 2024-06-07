@@ -1,3 +1,5 @@
+import 'package:portfolio/utils/constant.dart';
+
 import '../../data/network/base_api_services.dart';
 import '../../data/network/network_api_services.dart';
 import '../../model/user/user_model.dart';
@@ -13,7 +15,8 @@ class AuthHttpApiRepository implements AuthApiRepository {
   /// Returns a [UserModel] representing the user data if the login is successful.
   @override
   Future<UserModel> loginApi(dynamic data) async {
-    dynamic response = await _apiServices.postApi(AppUrl.loginEndPint, data);
+    dynamic response = await _apiServices
+        .postApi(AppUrl.loginApi, data, queryParams: {"key": apiKey});
     return UserModel.fromJson(response);
   }
 }

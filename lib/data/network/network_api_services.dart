@@ -29,6 +29,8 @@ class NetworkApiService implements BaseApiServices {
       throw NoInternetException('');
     } on TimeoutException {
       throw FetchDataException('Network Request time out');
+    } catch (e) {
+      rethrow;
     }
 
     if (kDebugMode) {
@@ -43,7 +45,8 @@ class NetworkApiService implements BaseApiServices {
   /// Throws a [NoInternetException] if there is no internet connection.
   /// Throws a [FetchDataException] if the network request times out.
   @override
-  Future<dynamic> postApi(String url, dynamic data) async {
+  Future<dynamic> postApi(String url, dynamic data,
+      {Map<String, dynamic>? queryParams, Map<String, String>? headers}) async {
     if (kDebugMode) {
       print(url);
       print(data);
@@ -51,13 +54,22 @@ class NetworkApiService implements BaseApiServices {
 
     dynamic responseJson;
     try {
-      final Response response = await post(Uri.parse(url), body: data)
-          .timeout(const Duration(seconds: 10));
+      final queryParam = queryParams;
+      final uri = Uri.parse(url);
+      Uri? newUri;
+      if (queryParam != null) {
+        newUri = uri.replace(queryParameters: queryParam);
+      }
+      final Response response =
+          await post(newUri ?? uri, body: data, headers: headers)
+              .timeout(const Duration(seconds: 10));
       responseJson = returnResponse(response);
     } on SocketException {
       throw NoInternetException('No Internet Connection');
     } on TimeoutException {
       throw FetchDataException('Network Request time out');
+    } catch (e) {
+      rethrow;
     }
 
     if (kDebugMode) {
@@ -76,19 +88,43 @@ class NetworkApiService implements BaseApiServices {
 
     switch (response.statusCode) {
       case 200:
-        dynamic responseJson = jsonDecode(response.body);
-        return responseJson;
+      case 201:
+        _parseResponse(response);
       case 400:
-        dynamic responseJson = jsonDecode(response.body);
-        return responseJson;
       case 401:
-        throw BadRequestException(response.body.toString());
-      case 500:
       case 404:
-        throw UnauthorisedException(response.body.toString());
+      case 500:
+        String errorMessage = "An unkown error occured";
+        int? errorCode;
+        try {
+          dynamic responseJson = jsonDecode(response.body);
+          if (responseJson is Map && responseJson.containsKey('error')) {
+            errorMessage = responseJson['error']['message'];
+            errorCode = responseJson['error']['code'];
+          }
+        } catch (e) {
+          errorMessage = "An error occurred: ${response.body.toString()}";
+        }
+        switch (errorCode) {
+          case 400:
+            throw UnauthorisedException(errorMessage);
+          case 404:
+            throw BadRequestException(errorMessage);
+          case 500:
+            throw ServerException(errorMessage);
+        }
+
       default:
         throw FetchDataException(
             'Error occured while communicating with server');
+    }
+  }
+
+  dynamic _parseResponse(http.Response response) {
+    try {
+      return jsonDecode(response.body);
+    } catch (e) {
+      return response.body;
     }
   }
 }

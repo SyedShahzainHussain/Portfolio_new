@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/utils/extension/flushbar_extension.dart';
 
 import '../../../bloc/download_file_bloc/download_file_bloc.dart';
-import '../../../config/color/colors.dart';
+
+import '../../../config/components/loader_widget.dart';
 import '../../../utils/enums.dart';
 
 class CvButtonWidget extends StatefulWidget {
@@ -52,12 +53,7 @@ class _CvButtonWidgetState extends State<CvButtonWidget> {
                         "https://firebasestorage.googleapis.com/v0/b/fir-b1e27.appspot.com/o/FullStmt_1713612188885_4230166016747_HassanHussain1.pdf?alt=media&token=7d1c1aef-230c-402b-a59a-7121c36272ca"));
               },
               child: state.isLoading
-                  ? const SizedBox(
-                      width: 15,
-                      height: 15,
-                      child: CircularProgressIndicator(
-                        color: AppColors.primaryColor,
-                      ))
+                  ? const LoaderWidget()
                   : const Text("Download Resume"),
             ),
           );

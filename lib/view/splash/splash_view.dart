@@ -20,6 +20,7 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
     // Calls the [checkAuthentication] method from [SplashServices] to handle authentication logic
     splashServices.checkAuthentication(context);
+    
   }
 
   @override

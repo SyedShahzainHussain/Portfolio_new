@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/bloc/drawer_change_bloc/drawer_change_bloc.dart';
 import 'package:portfolio/utils/constant.dart';
-import 'package:portfolio/utils/extension/general_extension.dart';
+
 import 'package:portfolio/view/login/login_screen.dart';
 import 'package:portfolio/view/profile/profile.dart';
 import 'package:portfolio/view/responsive.dart';
 
+import '../../admin/view/main/admin_main_screen.dart';
+import '../../bloc/logout/logout_bloc.dart';
+import '../../services/session_controller/session_controller.dart';
 import '../contact/contact_screen.dart';
 import '../drawer/drawer_screen.dart';
 import '../home/home_screen.dart';
@@ -41,13 +44,15 @@ class MainScreen extends StatelessWidget {
         child: Row(
           children: [
             if (Responsive.isDesktop(context)) const SlideMenu(),
-            defaultPadding.width,
-            BlocBuilder<DrawerChangeBloc, DrawerChangeState>(
+            BlocBuilder<LogoutBloc, LogoutState>(
               builder: (context, state) {
-                return Expanded(flex: 7, child: pages[state.currentIndex]);
+                return BlocBuilder<DrawerChangeBloc, DrawerChangeState>(
+                  builder: (context, state) {
+                    return Expanded(child: pages[state.currentIndex]);
+                  },
+                );
               },
             ),
-            defaultPadding.width,
           ],
         ),
       ),
@@ -60,5 +65,5 @@ List<Widget> pages = [
   const ProfileScreen(),
   const ContactScreen(),
   const WorkScreen(),
-  const LoginScreen(),
+  SessionController().isLogin! ? const AdminMainScreen() : const LoginScreen(),
 ];

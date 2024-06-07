@@ -8,7 +8,7 @@ class AuthMockApiRepository implements AuthApiRepository {
     // Simulate a delay to mimic network latency
     await Future.delayed(const Duration(seconds: 2));
     // Mock response data
-    var responseData = {'token': 'a23z345xert'};
+    var responseData = {"email": "hello@gmail.com", "password": "12345"};
     return UserModel.fromJson(responseData);
   }
 }

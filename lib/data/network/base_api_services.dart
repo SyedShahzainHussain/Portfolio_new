@@ -9,5 +9,6 @@ abstract class BaseApiServices {
   ///
   /// Takes a [url] parameter representing the endpoint URL and a [data] parameter
   /// representing the data to be sent.
-  Future<dynamic> postApi(String url, dynamic data);
+  Future<dynamic> postApi(String url, dynamic data,
+      {Map<String, dynamic>? queryParams, Map<String, String> headers});
 }

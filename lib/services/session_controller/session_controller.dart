@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
+import 'package:flutter/foundation.dart';
+import 'package:universal_html/html.dart' as html;
 import '../../model/user/user_model.dart';
 import '../storage/local_storage.dart';
 
@@ -21,14 +21,23 @@ class SessionController {
   }
 
   Future<void> saveUserPrefrence(dynamic user) async {
-    await localStorage.setValue("token", jsonEncode(user));
-    await localStorage.setValue("isLogin", "true");
+    if (kIsWeb) {
+      html.window.sessionStorage['token'] = jsonEncode(user);
+      html.window.sessionStorage['isLogin'] = "true";
+    } else {
+      await localStorage.setValue("token", jsonEncode(user));
+      await localStorage.setValue("isLogin", "true");
+    }
   }
 
   Future<void> getUserPrefrences() async {
     try {
-      var userData = await localStorage.realValue("token");
-      var isLogin = await localStorage.realValue("isLogin");
+      var userData = kIsWeb
+          ? html.window.sessionStorage['token']
+          : await localStorage.realValue("token");
+      var isLogin = kIsWeb
+          ? html.window.sessionStorage['isLogin']
+          : await localStorage.realValue("isLogin");
 
       if (userData != null) {
         SessionController().userModel =
@@ -37,6 +46,17 @@ class SessionController {
       SessionController().isLogin = isLogin == "true" ? true : false;
     } catch (e) {
       debugPrint(e.toString());
+    }
+  }
+
+  Future<void> logout() async {
+    if (kIsWeb) {
+      html.window.sessionStorage.clear();
+      await getUserPrefrences();
+    } else {
+      await localStorage.clearValue("token");
+      await localStorage.clearValue("isLogin");
+      await getUserPrefrences();
     }
   }
 }

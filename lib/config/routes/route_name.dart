@@ -8,4 +8,7 @@ class RoutesName {
   static const String home = '/home_screen';
   //main screen routes name
   static const String main = '/main_screen';
+
+  // ! admin
+  static const String adminMainScreen = "/admin_main_screen";
 }

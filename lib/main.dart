@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:portfolio/bloc/drawer_change_bloc/drawer_change_bloc.dart';
+import 'package:portfolio/bloc/logout/logout_bloc.dart';
 import 'package:portfolio/config/builder_context/builder_context.dart';
 import 'package:portfolio/config/themes/custom_theme/elevated_button_theme.dart';
 import 'package:portfolio/config/themes/custom_theme/outlined_button_theme.dart';
 import 'package:portfolio/config/themes/theme.dart';
+import 'package:portfolio/repository/contact_api/contact_api_repository.dart';
+import 'package:portfolio/repository/contact_api/contact_repository.dart';
 import 'package:rive/rive.dart';
 import 'config/routes/route_name.dart';
 import 'config/routes/routes.dart';
@@ -21,8 +24,15 @@ void main() async {
 
   servicesLocator(); // Initializing service locator for dependency injection
 
-  runApp(BlocProvider(
-    create: (context) => DrawerChangeBloc(),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => DrawerChangeBloc(),
+      ),
+      BlocProvider(
+        create: (context) => LogoutBloc(),
+      ),
+    ],
     child: const MyApp(),
   ));
 }
@@ -62,7 +72,7 @@ class MyApp extends StatelessWidget {
           outlinedButtonTheme:
               OutlinedButtonThemes.lightOutlinedButtonTheme(context),
         ),
-        initialRoute: RoutesName.main,
+        initialRoute: RoutesName.splash,
         onGenerateRoute: Routes.generateRoute,
       );
     });
@@ -73,4 +83,7 @@ class MyApp extends StatelessWidget {
 void servicesLocator() {
   getIt.registerLazySingleton<AuthApiRepository>(() =>
       AuthHttpApiRepository()); // Registering AuthHttpApiRepository as a lazy singleton for AuthApiRepository
+
+  getIt.registerLazySingleton<ContactApiRepository>(() =>
+      ContactHttpRepository()); // Registering ContactHttpApiRepository as a lazy singleton for ContactApiRepository
 }
