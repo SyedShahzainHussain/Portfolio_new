@@ -22,6 +22,6 @@ class ContactTitle extends StatelessWidget {
                   color: AppColors.lightGrey,
                   fontWeight: FontWeight.bold,
                   decorationColor: Colors.grey.withOpacity(0.8),
-                ));
+                ),);
   }
 }

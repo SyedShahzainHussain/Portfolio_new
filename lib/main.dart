@@ -7,7 +7,6 @@ import 'package:portfolio/config/builder_context/builder_context.dart';
 import 'package:portfolio/config/themes/custom_theme/elevated_button_theme.dart';
 import 'package:portfolio/config/themes/custom_theme/outlined_button_theme.dart';
 import 'package:portfolio/config/themes/theme.dart';
-import 'package:portfolio/repository/contact_api/contact_api_repository.dart';
 import 'package:portfolio/repository/contact_api/contact_repository.dart';
 import 'package:rive/rive.dart';
 import 'config/routes/route_name.dart';

@@ -37,7 +37,7 @@ class ContactButton extends StatelessWidget {
       builder: (context, state) {
         return OutlinedButton(
           style: ButtonStyle(
-              shape: MaterialStateProperty.all(const BeveledRectangleBorder())),
+              shape: WidgetStateProperty.all(const BeveledRectangleBorder())),
           onPressed: () {
             save();
           },

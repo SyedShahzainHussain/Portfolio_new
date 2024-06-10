@@ -70,32 +70,32 @@ class _WorkCardWidgetState extends State<WorkCardWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 OutlinedButton(
-                  style: const ButtonStyle(shape: MaterialStatePropertyAll(BeveledRectangleBorder())),
+                  style: const ButtonStyle(shape: WidgetStatePropertyAll(BeveledRectangleBorder())),
                   onPressed: () {},
                   child: const Text("Get Code"),
                 ),
                 TextButton(
                   style: ButtonStyle(
-                    side: MaterialStateProperty.all(
+                    side: WidgetStateProperty.all(
                       const BorderSide(
                         color: AppColors.darkColor,
                       ),
                     ),
-                    backgroundColor: MaterialStateProperty.resolveWith(
+                    backgroundColor: WidgetStateProperty.resolveWith(
                       (states) {
-                        if (states.contains(MaterialState.hovered)) {
+                        if (states.contains(WidgetState.hovered)) {
                           return AppColors.darkColor;
-                        } else if (states.contains(MaterialState.pressed)) {
+                        } else if (states.contains(WidgetState.pressed)) {
                           return AppColors.darkColor;
                         }
                         return AppColors.whiteColor;
                       },
                     ),
-                    foregroundColor: MaterialStateProperty.resolveWith(
+                    foregroundColor: WidgetStateProperty.resolveWith(
                       (states) {
-                        if (states.contains(MaterialState.hovered)) {
+                        if (states.contains(WidgetState.hovered)) {
                           return AppColors.whiteColor;
-                        } else if (states.contains(MaterialState.pressed)) {
+                        } else if (states.contains(WidgetState.pressed)) {
                           return AppColors.whiteColor;
                         }
                         return AppColors.darkColor;

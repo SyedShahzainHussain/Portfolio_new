@@ -113,7 +113,7 @@ class HomeBanner extends StatelessWidget {
                                     : Alignment.centerLeft,
                                 child: OutlinedButton(
                                   style: ButtonStyle(
-                                      shape: MaterialStateProperty.all(
+                                      shape: WidgetStateProperty.all(
                                           const BeveledRectangleBorder())),
                                   onPressed: () {},
                                   child: const Text("EXPLORE NOW"),

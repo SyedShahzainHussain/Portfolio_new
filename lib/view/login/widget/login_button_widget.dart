@@ -38,7 +38,7 @@ class LoginButtonWidget extends StatelessWidget {
         builder: (context, state) {
           return OutlinedButton(
             style: const ButtonStyle(
-                shape: MaterialStatePropertyAll(BeveledRectangleBorder())),
+                shape: WidgetStatePropertyAll(BeveledRectangleBorder())),
             onPressed: save,
             child: state.postApiStatus == PostApiStatus.loading
                 ? const LoaderWidget()
