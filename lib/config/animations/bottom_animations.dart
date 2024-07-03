@@ -40,17 +40,18 @@ class _AnimatorState extends State<Animator> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: animation,
-        child: widget.child,
-        builder: (BuildContext context, Widget? child) {
-          return Opacity(
-            opacity: animation.value,
-            child: Transform.translate(
-              offset: Offset(0.0, (1 - animation.value) * 20),
-              child: child,
-            ),
-          );
-        });
+      animation: animation,
+      child: widget.child,
+      builder: (BuildContext context, Widget? child) {
+        return Opacity(
+          opacity: animation.value,
+          child: Transform.translate(
+            offset: Offset(0.0, (1 - animation.value) * 20),
+            child: child,
+          ),
+        );
+      },
+    );
   }
 }
 
